@@ -1,0 +1,6 @@
+#name;password;roles;isActif;expirationDate
+alex;laVieEstBelle;Student;true;01.01.2010
+margot;Vacances2020;Assistant;true;01.01.2022
+hugo;Lac@Geneve999;Student, Assistant;true;01.01.2021
+celine;HEG@Carouge_111;Teacher;true;01.01.2021
+fred;HEG@Battelle;Teacher, Admin;false;01.01.2021
