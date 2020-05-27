@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-
-// TODO use AccountManager
 public class SecurityProvider implements Authenticator, Authorizer {
 
     private static SecurityProvider INSTANCE = new SecurityProvider();

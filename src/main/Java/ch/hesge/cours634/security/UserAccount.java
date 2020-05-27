@@ -1,30 +1,25 @@
 package ch.hesge.cours634.security;
 
-import ch.hesge.cours634.security.db.magic.DBCol;
-import ch.hesge.cours634.security.db.magic.DBTable;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@DBTable(table = "USER_ACCOUNT")
+@Entity
 public class UserAccount {
 
-	@DBCol(column = "USER_NAME")
+	@Id
 	private String name;
-
-	@DBCol(column = "USER_PASSWORD")
 	private String password;
-
-	@DBCol(column = "IS_ACTIVE")
 	private boolean isActif;
-
-	@DBCol(column = "EXPIRATION_DATE")
 	private LocalDate expirationDate;
 
-	@DBCol(column = "USER_ROLES")
-	private List<String> roles;
+	@OneToMany(mappedBy = "user")
 	private List<AccessEvent> accessEvents;
+
+	@Transient
+	private List<String> roles;
 
 	public List<AccessEvent> getAccessEvents() {
 		return accessEvents;
@@ -103,11 +98,11 @@ public class UserAccount {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		UserAccount that = (UserAccount) o;
-		return isActif == that.isActif && Objects.equals(name, that.name) && Objects.equals(password, that.password) && Objects.equals(expirationDate, that.expirationDate) && Objects.equals(roles, that.roles);
+		return Objects.equals(name, that.name);
 	}
 
 	@Override public int hashCode() {
-		return Objects.hash(name, password, isActif, expirationDate, roles);
+		return Objects.hash(name);
 	}
 
 	public static final class Builder {

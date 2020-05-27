@@ -4,6 +4,7 @@ import ch.hesge.cours634.security.exceptions.UnknownUser;
 import ch.hesge.cours634.security.exceptions.UserAccountException;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -17,9 +18,10 @@ public class AccountManagerTest {
     String testUserName="pierre";
 
     @After
+    @Before
     public void teardown() throws UserAccountException {
        if( accountManager.isUserExist(testUserName)){
-           accountManager.deleteUser(buildTestUser(testUserName, "01.01.2025"));
+           accountManager.deleteUser(testUserName);
        }
     }
 
@@ -74,7 +76,7 @@ public class AccountManagerTest {
     public void deleteUser() throws UnknownUser, UserAccountException {
         UserAccount account = buildTestUser(testUserName, "01.01.2025");
         accountManager.addUser(account);
-        accountManager.deleteUser(account);
+        accountManager.deleteUser(account.getName());
         accountManager.getUser(account.getName());
     }
 

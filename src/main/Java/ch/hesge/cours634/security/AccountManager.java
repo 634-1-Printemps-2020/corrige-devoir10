@@ -5,6 +5,7 @@ import ch.hesge.cours634.security.exceptions.UnknownUser;
 import ch.hesge.cours634.security.exceptions.UserAccountException;
 import org.apache.log4j.Logger;
 
+import javax.persistence.RollbackException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -40,21 +41,14 @@ public class AccountManager {
     public void addUser(UserAccount user ) throws UserAccountException {
         try {
             dao.addUser(user);
-        } catch (SQLException e) {
+        } catch (RollbackException e) {
                 logger.error(e);
                 throw new UserAccountException("Failed to add user "+user, e);
             }
     }
 
     public UserAccount getUser(String name) throws UnknownUser {
-        UserAccount account = null;
-        try {
-            account = dao.findUserByName(name);
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new UnknownUser("Failed to find user "+name, e);
-        }
-        return account;
+           return dao.findUserByName(name);
     }
 
     public void disableUser(UserAccount user) throws UnknownUser, UserAccountException {
@@ -63,55 +57,32 @@ public class AccountManager {
             throw new UnknownError("unknown user "+user);
         }
         account.setActif(false);
-        try {
-            dao.updateUser(account);
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new UserAccountException("Failed to disable user "+user, e);
-        }
+        dao.updateUser(account);
     }
 
     public void updateUser(UserAccount user) throws UserAccountException {
-        try {
             dao.updateUser(user);
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new UserAccountException("Failed to update user "+user, e);
-        }
     }
 
-    public void deleteUser(UserAccount user) throws UserAccountException {
-        try {
-            dao.deleteUser(user);
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new UserAccountException("Failed to delete user "+user, e);
-        }
+    public void deleteUser(String name) throws UserAccountException {
+            dao.deleteUser(name);
     }
+
 
     public boolean isUserExist(String login) {
         try {
 			UserAccount user = dao.findUserByName(login);
-			return user!=null;
-        } catch (SQLException | UnknownUser e) {
+        } catch (UnknownUser e) {
             return false;
         }
+        return true;
     }
 
     public boolean isActif(String login) throws UnknownUser {
-
-        try {
             return dao.findUserByName(login).isActif();
-        } catch (SQLException e) {
-            throw new UnknownUser("Utilisateur " + login + " inconnu" );
-        }
     }
 
     public boolean isExpired(String login) throws UnknownUser {
-        try {
             return dao.findUserByName(login).getExpirationDate().isBefore(LocalDate.now());
-        } catch (SQLException e) {
-            throw new UnknownUser("Utilisateur " + login + " inconnu" );
-        }
     }
 }
