@@ -27,7 +27,7 @@ public class UserAccount {
 		this.accessEvents = accessEvents;
 	}
 
-	public UserAccount(String name, String password, List<String> roles, LocalDate expirationDate) {
+	public UserAccount(String name, String password, LocalDate expirationDate) {
 		this.name = name;
 		this.password = password;
 		this.expirationDate = expirationDate;

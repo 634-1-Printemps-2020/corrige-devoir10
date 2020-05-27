@@ -22,7 +22,7 @@ public class AccountManager {
     }
 
     public UserAccount createAccount(String user, String password, List<String> roles, LocalDate expirationDate){
-        UserAccount userAccount = new UserAccount(user, password, roles, expirationDate);
+        UserAccount userAccount = new UserAccount(user, password, expirationDate);
         validate(userAccount);
         return userAccount;
     }
