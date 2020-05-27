@@ -42,7 +42,6 @@ public class CSVImporter {
 		//name;password;roles;isActif;expirationDate
 		user.setName(line.get(0));
 		user.setPassword(line.get(1));
-		user.setRoles(Arrays.asList(line.get(2).split(",")));
 		user.setActif(Boolean.valueOf(line.get(3)));
 		user.setExpirationDate(LocalDate.parse(line.get(4), DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 		return user;

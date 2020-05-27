@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class SecurityProvider implements Authenticator, Authorizer {
+public class SecurityProvider implements Authenticator {
 
     private static SecurityProvider INSTANCE = new SecurityProvider();
     AccountManager accMgr;
@@ -51,13 +51,4 @@ public class SecurityProvider implements Authenticator, Authorizer {
 
     }
 
-    @Override
-    public List<String> getRoles(String user) throws UnknownUser {
-        return accMgr.getUser(user).getRoles();
-    }
-
-    @Override
-    public boolean isCallerInRole(String user, String role) throws UnknownUser {
-        return accMgr.getUser(user).getRoles().contains(role);
-    }
 }

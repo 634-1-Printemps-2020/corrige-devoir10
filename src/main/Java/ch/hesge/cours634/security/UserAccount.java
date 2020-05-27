@@ -18,8 +18,6 @@ public class UserAccount {
 	@OneToMany(mappedBy = "user")
 	private List<AccessEvent> accessEvents;
 
-	@Transient
-	private List<String> roles;
 
 	public List<AccessEvent> getAccessEvents() {
 		return accessEvents;
@@ -33,7 +31,6 @@ public class UserAccount {
 		this.name = name;
 		this.password = password;
 		this.expirationDate = expirationDate;
-		this.roles = roles;
 	}
 
 	public UserAccount() {
@@ -45,7 +42,7 @@ public class UserAccount {
 		setPassword(builder.password);
 		setActif(builder.isActif);
 		setExpirationDate(builder.expirationDate);
-		setRoles(builder.roles);
+		setAccessEvents(builder.accessEvents);
 	}
 
 	public String getName() {
@@ -80,18 +77,6 @@ public class UserAccount {
 		this.expirationDate = expirationDate;
 	}
 
-	public List<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
-
-	@Override public String toString() {
-		return "UserAccount{" + "name='" + name + '\'' + ", password='" + password + '\'' + ", isActif=" + isActif + ", expirationDate=" + expirationDate + ", roles=" + roles + '}';
-	}
-
 	@Override public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -110,7 +95,7 @@ public class UserAccount {
 		private String password;
 		private boolean isActif;
 		private LocalDate expirationDate;
-		private List<String> roles;
+		private List<AccessEvent> accessEvents;
 
 		public Builder() {
 		}
@@ -135,8 +120,8 @@ public class UserAccount {
 			return this;
 		}
 
-		public Builder roles(List<String> val) {
-			roles = val;
+		public Builder accessEvents(List<AccessEvent> val) {
+			accessEvents = val;
 			return this;
 		}
 
