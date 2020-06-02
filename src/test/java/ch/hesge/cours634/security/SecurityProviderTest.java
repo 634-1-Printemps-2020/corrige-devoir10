@@ -24,7 +24,7 @@ public class SecurityProviderTest {
 
 
     @Test
-    public void authenticateOK() throws AuthenticationException, UnknownUser, SQLException {
+    public void authenticateOK() throws AuthenticationException, UnknownUser {
         SecurityProvider securityProvider = SecurityProvider.getInstance();
         Assert.assertNotNull(securityProvider);
         securityProvider.authenticate("margot", "Vacances2020");
@@ -32,7 +32,7 @@ public class SecurityProviderTest {
     }
 
     @Test(expected = AuthenticationException.class)
-    public void authenticateKO() throws AuthenticationException, UnknownUser, SQLException {
+    public void authenticateKO() throws AuthenticationException, UnknownUser {
         SecurityProvider securityProvider = SecurityProvider.getInstance();
         Assert.assertNotNull(securityProvider);
         securityProvider.authenticate("margot", "Vacances1919");

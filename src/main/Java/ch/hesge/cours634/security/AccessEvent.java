@@ -9,7 +9,7 @@ public class AccessEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private Status status;
     private LocalDateTime date;

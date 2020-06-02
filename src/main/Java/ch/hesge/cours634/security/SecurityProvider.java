@@ -21,12 +21,12 @@ public class SecurityProvider implements Authenticator {
     }
 
     @Override
-    public void authenticate(String login, String password) throws AuthenticationException, UnknownUser, SQLException {
+    public void authenticate(String login, String password) throws AuthenticationException, UnknownUser {
         AccessEventDAO accessEventDAO = new AccessEventDAO();
 
 
         if (!accMgr.isUserExist(login)) {
-            accessEventDAO.insert(new AccessEvent(Status.FAILURE, "User " + login + " is not registered in our system"), null);
+            accessEventDAO.insert(new AccessEvent(Status.FAILURE, "User " + login + " is not registered in our system"), login);
             throw new UnknownUser("User " + login + " is not registered in our system");
         }
 

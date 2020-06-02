@@ -21,8 +21,9 @@ public class AccountManager {
         return INSTANCE;
     }
 
-    public UserAccount createAccount(String user, String password, List<String> roles, LocalDate expirationDate){
+    public UserAccount createAccount(String user, String password, LocalDate expirationDate){
         UserAccount userAccount = new UserAccount(user, password, expirationDate);
+        userAccount.setActif(true);
         validate(userAccount);
         return userAccount;
     }

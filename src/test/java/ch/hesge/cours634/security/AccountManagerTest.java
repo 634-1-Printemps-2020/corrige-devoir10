@@ -17,7 +17,7 @@ public class AccountManagerTest {
 
     String testUserName="pierre";
 
-    @After
+
     @Before
     public void teardown() throws UserAccountException {
        if( accountManager.isUserExist(testUserName)){
@@ -85,7 +85,7 @@ public class AccountManagerTest {
     }
 
     private UserAccount buildTestUser(String testUserName, String s) {
-        return accountManager.createAccount(testUserName, "Password123", Arrays.asList("Student", "Assistant"), buildLocalDate(s));
+        return accountManager.createAccount(testUserName, "Password123", buildLocalDate(s));
     }
 
 }

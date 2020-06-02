@@ -15,7 +15,7 @@ public class UserAccount {
 	private boolean isActif;
 	private LocalDate expirationDate;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<AccessEvent> accessEvents;
 
 

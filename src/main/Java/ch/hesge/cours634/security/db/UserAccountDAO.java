@@ -53,7 +53,7 @@ public class UserAccountDAO {
 	}
 
     public List<UserAccount> findUsersBetweenDates(LocalDate start, LocalDate finish) throws SQLException, UnknownUser {
-	//TODO adapter aprtes la mise en place des relations
+	//TODO adapter apres la mise en place des relations
 		EntityManager em = JPAHelper.em();
 		Query query = em.createQuery("select uac from UserAccount uac where  uac.expirationDate between :date1 and :date2");
 		query.setParameter("date1", start);
