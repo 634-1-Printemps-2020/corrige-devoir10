@@ -9,8 +9,9 @@ public class AccessEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
     private LocalDateTime date;
     private String message;

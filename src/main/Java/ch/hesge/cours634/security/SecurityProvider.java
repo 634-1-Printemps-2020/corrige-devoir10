@@ -26,7 +26,7 @@ public class SecurityProvider implements Authenticator {
 
 
         if (!accMgr.isUserExist(login)) {
-            accessEventDAO.insert(new AccessEvent(Status.FAILURE, "User " + login + " is not registered in our system"), null);
+            accessEventDAO.insert(new AccessEvent(Status.FAILURE, "User " + login + " is not registered in our system"), login);
             throw new UnknownUser("User " + login + " is not registered in our system");
         }
 
