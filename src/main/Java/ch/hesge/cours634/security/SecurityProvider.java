@@ -2,11 +2,6 @@ package ch.hesge.cours634.security;
 
 import ch.hesge.cours634.security.db.AccessEventDAO;
 import ch.hesge.cours634.security.exceptions.UnknownUser;
-
-import java.sql.SQLException;
-import java.util.List;
-
-
 public class SecurityProvider implements Authenticator {
 
     private static SecurityProvider INSTANCE = new SecurityProvider();
@@ -21,12 +16,10 @@ public class SecurityProvider implements Authenticator {
     }
 
     @Override
-    public void authenticate(String login, String password) throws AuthenticationException, UnknownUser, SQLException {
+    public void authenticate(String login, String password) throws AuthenticationException, UnknownUser {
         AccessEventDAO accessEventDAO = new AccessEventDAO();
-
-
         if (!accMgr.isUserExist(login)) {
-            accessEventDAO.insert(new AccessEvent(Status.FAILURE, "User " + login + " is not registered in our system"), null);
+            accessEventDAO.insert(new AccessEvent(Status.FAILURE, "User " + login + " is not registered in our system"), login);
             throw new UnknownUser("User " + login + " is not registered in our system");
         }
 

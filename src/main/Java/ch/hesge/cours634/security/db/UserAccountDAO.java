@@ -14,7 +14,7 @@ public class UserAccountDAO {
 
     private static Logger logger = Logger.getLogger(UserAccountDAO.class);
 
-    public void addUsers(List<UserAccount> users) throws SQLException {
+    public void addUsers(List<UserAccount> users) {
 		EntityManager em = JPAHelper.em();
 		em.getTransaction().begin();
 		try {
@@ -52,7 +52,7 @@ public class UserAccountDAO {
 		return userAccount;
 	}
 
-    public List<UserAccount> findUsersBetweenDates(LocalDate start, LocalDate finish) throws SQLException, UnknownUser {
+    public List<UserAccount> findUsersBetweenDates(LocalDate start, LocalDate finish) {
 	//TODO adapter aprtes la mise en place des relations
 		EntityManager em = JPAHelper.em();
 		Query query = em.createQuery("select uac from UserAccount uac where  uac.expirationDate between :date1 and :date2");

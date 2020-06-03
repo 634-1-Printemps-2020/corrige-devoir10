@@ -6,7 +6,6 @@ import ch.hesge.cours634.security.exceptions.UserAccountException;
 import org.apache.log4j.Logger;
 
 import javax.persistence.RollbackException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 

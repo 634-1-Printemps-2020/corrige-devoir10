@@ -15,13 +15,8 @@ public class UserAccount {
 	private boolean isActif;
 	private LocalDate expirationDate;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<AccessEvent> accessEvents;
-
-
-	public List<AccessEvent> getAccessEvents() {
-		return accessEvents;
-	}
 
 	public void setAccessEvents(List<AccessEvent> accessEvents) {
 		this.accessEvents = accessEvents;
@@ -43,6 +38,10 @@ public class UserAccount {
 		setActif(builder.isActif);
 		setExpirationDate(builder.expirationDate);
 		setAccessEvents(builder.accessEvents);
+	}
+
+	public List<AccessEvent> getAccessEvents() {
+		return accessEvents;
 	}
 
 	public String getName() {

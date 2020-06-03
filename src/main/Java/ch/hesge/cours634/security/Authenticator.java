@@ -6,6 +6,6 @@ import java.sql.SQLException;
 
 public interface Authenticator {
 
-    void authenticate (String login, String password) throws AuthenticationException, UnknownUser, SQLException;
+    void authenticate (String login, String password) throws AuthenticationException, UnknownUser;
 }
 

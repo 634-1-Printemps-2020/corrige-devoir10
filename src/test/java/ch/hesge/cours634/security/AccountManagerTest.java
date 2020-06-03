@@ -80,6 +80,7 @@ public class AccountManagerTest {
         accountManager.getUser(account.getName());
     }
 
+
     private LocalDate buildLocalDate(String s) {
         return LocalDate.parse(s, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }

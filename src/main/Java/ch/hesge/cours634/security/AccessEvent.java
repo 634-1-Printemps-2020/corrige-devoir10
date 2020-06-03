@@ -14,7 +14,7 @@ public class AccessEvent {
     private Status status;
     private LocalDateTime date;
     private String message;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_name")
     private UserAccount user;
 
