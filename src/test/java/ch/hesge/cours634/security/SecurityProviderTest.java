@@ -3,8 +3,6 @@ package ch.hesge.cours634.security;
 import ch.hesge.cours634.security.db.AccessEventDAO;
 import ch.hesge.cours634.security.db.JPAHelper;
 import ch.hesge.cours634.security.exceptions.UnknownUser;
-import ch.hesge.cours634.security.exceptions.UserAccountException;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
